@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/books/main",
+    "pages/test/main",
+    "pages/index/main",
+    "pages/logs/main",
+
+    "pages/me/main",
+    "pages/comments/main",
+    "pages/counter/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "余多彬的尝试",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/books/main",
+        "text": "首页",
+        "selectedIconPath": "static/image/l2.png",
+        "iconPath": "static/image/l1.png"
+      },
+      {
+        "pagePath": "pages/test/main",
+        "text": " 扫码"
+      },
+      {
+        "pagePath": "pages/me/main",
+        "text": "我的",
+        "selectedIconPath": "static/image/m2.png",
+        "iconPath": "static/image/m1.png"
+      }
+    ],
+    "color": "#8B4513",
+    "selectedColor": "#FF6347"
+  }
+}

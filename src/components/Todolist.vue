@@ -63,7 +63,7 @@
         this.todos = []
       }
 
-    }
+    },
   }
 </script>
 <style>

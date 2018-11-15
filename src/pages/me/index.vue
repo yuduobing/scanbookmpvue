@@ -12,6 +12,7 @@
 
 
       <button v-if="statues" open-type="getUserInfo" @getuserinfo="bindGetUserInfo" @click="getUserInfo1">获取权限</button>
+      <button @click="login">获取openid</button>
       <YearProgress></YearProgress>
     </div>
   </div>
@@ -27,16 +28,48 @@
         statues: true
 
       }
-  },
+    },
+    created () {
+
+    },
     onload () {
       // 这个时候 不行，可能与生命周期有关系
       // this.getSetting()
     },
+
+    onShow () {
+      const a = (wx.getStorageSync('userInfo') || [])
+      console.log(a)
+      if (a) {
+        this.statues = !this.statues
+      } else { console.log('用户还未登陆') }
+    },
     mounted () {
       // 一进来看看用户是否授权过
-      this.getSetting()
+
   },
     methods: {
+      login () {
+        wx.login({
+          success: function (res) {
+            console.log('code:' + res.code)
+            // 发送请求
+            wx.request({
+              url: 'http://localhost:8080/sign', // 改成自己的服务器地址
+              data: {
+                code: res.code, // 上面wx.login()成功获取到的code
+                operFlag: 'getOpenid'
+              },
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success: function (res) {
+                console.log(res)
+              }
+            })
+          }
+        })
+      },
       getSetting () {
         wx.getSetting({
           success: function (res) {

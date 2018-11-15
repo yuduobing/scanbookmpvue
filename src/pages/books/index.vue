@@ -1,18 +1,40 @@
 <template>
- <div>
-   <button  @click="scan">扫码获取图书</button>
+  <div>
+  <div v-if="statues">
+    <button @click="scan">扫码获取图书</button>
+    {{scanresult.summary}}
   </div>
+  <div v-else>
+    <div class="head">
+     <div class="head-i">
+    <img :src="statues.image" class="footer-p1"
+               style=" width:100px;  height: 100px;  "/>
+     </div>
+    <div class="head-t">
+    书名：{{statues.title}}
+      <div class="head-t">
+        作者：{{statues.author}}
+    </div>
+      <div class="body">
+        {{statues.summary}}
+      </div></div>
+
+  </div>
+  </div></div>
 </template>
 
 <script>
   import card from '@/components/card'
-  import {showSuccess} from '@/utils/index'
+import { showSuccess, get } from '@/utils/index'
 
-  export default {
+export default {
     data () {
       return {
         motto: 'Hello World',
-        userInfo: {}
+        userInfo: {},
+        isbn: '',
+        scanresult: {},
+        statues: true
       }
     },
 
@@ -21,10 +43,30 @@
     },
 
     methods: {
+      async addBook (isbbn) {
+        const
+          res = await get('http://localhost:8080/addBOOK', {
+            isbn: this.isbn,
+            openid: this.userInfo.openid
+          })
+        if (res.code === 0 && res.data.title) {
+          showSuccess('添加成功')
+          console.log('添加成功', res)
+        } else {
+          // 添加图书
+          showSuccess('添加失败a')
+          this.statues = !this.statues
+          this.scanresult = res
+          console.log(this.scanresult)
+          console.log('添加失败a', res)
+        }
+      },
       scan () {
         wx.scanCode({
-          success : (res) => {
-            console.log("扫码的值", res.result)
+          success: (res) => {
+            this.isbn = res.result
+            console.log('扫码的值', this.isbn)
+            this.addBook()
           },
           fail: (res) => {
             console.log(res)
@@ -49,6 +91,7 @@
               },
               fail: (res) => {
                 console.log('登陆失败', res)
+
                 showSuccess('登录失败')
               }
             })
@@ -63,7 +106,7 @@
     created () {
       // 调用应用实例的方法获取全局数据
       this.getUserInfo()
-    }
+  }
   }
 </script>
 
@@ -75,9 +118,9 @@
   }
 
   .userinfo-avatar {
-    width: 128rpx;
-    height: 128rpx;
-    margin: 20rpx;
+    width: 128 rpx;
+    height: 128 rpx;
+    margin: 20 rpx;
     border-radius: 50%;
   }
 

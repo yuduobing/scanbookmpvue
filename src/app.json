@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/books/main",
     "pages/test/main",
+    "pages/books/main",
+
     "pages/index/main",
     "pages/logs/main",
-
+    "pages/detail/main",
     "pages/me/main",
     "pages/comments/main",
     "pages/counter/main"
@@ -18,13 +19,14 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/books/main",
+        "pagePath": "pages/test/main",
+
         "text": "首页",
         "selectedIconPath": "static/image/l2.png",
         "iconPath": "static/image/l1.png"
       },
       {
-        "pagePath": "pages/test/main",
+        "pagePath": "pages/books/main",
         "text": " 扫码"
       },
       {

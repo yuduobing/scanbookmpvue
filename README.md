@@ -1,22 +1,17 @@
-# firstapp
+实现下拉刷新在单文件js中加入
+export default{
+config:{
 
-> A Mpvue project
+enablePullDownRefresh:ture
+}
 
-## Build Setup
 
-``` bash
-# install dependencies
-npm install
+}
+在页面添加函数
+onPullDownRefresh(){
 
-# serve with hot reload at localhost:8080
-npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-1app.json所有字符都必须用字符串包围起来
+}
+wx.showNavigationBarLoading(Object object)
+在当前页面显示导航条加载动画
+wx.hideNavigationBarLoading(Object object)

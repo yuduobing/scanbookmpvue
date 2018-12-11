@@ -117,15 +117,12 @@
   },
     onShow () {
 
-
-
     },
     methods: {
 
       // 跳转
       change (a) {
         var url = '../detail/main?id=' + a
-
 
         wx.navigateTo({url})
       }

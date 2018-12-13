@@ -26,7 +26,7 @@
         "iconPath": "static/image/l1.png"
       },
       {
-        "pagePath": "pages/books/main",
+        "pagePath":     "pages/logs/main",
         "text": " 扫码"
       },
       {
